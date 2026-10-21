@@ -141,3 +141,22 @@ li button {
   .resumen { grid-template-columns: 1fr 1fr; }
   .resumen > div:first-child { grid-column: 1 / -1; }
 }
+
+footer {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+footer p { margin: 0.25rem 0; }
+
+footer a {
+  color: var(--acento);
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
