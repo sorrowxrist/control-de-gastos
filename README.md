@@ -1,5 +1,3 @@
-# control-de-gastos
-
 # Control de gastos
 
 App web simple para anotar gastos y ver cuánto queda del presupuesto del mes.
