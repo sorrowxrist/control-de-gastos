@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control de gastos</title>
+<link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <main>
+    <h1>Control de gastos</h1>
+
+    <section class="resumen" aria-live="polite">
+      <div>
+        <label for="presupuesto">Presupuesto del mes</label>
+        <input type="number" id="presupuesto" min="0" step="100" placeholder="Ej: 150000">
+      </div>
+      <div>
+        <p class="etiqueta">Gastado</p>
+        <p class="monto" id="gastado">$0</p>
+      </div>
+      <div>
+        <p class="etiqueta">Te queda</p>
+        <p class="monto" id="restante">$0</p>
+      </div>
+      <div class="barra" role="progressbar" aria-label="Porcentaje del presupuesto gastado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="relleno"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Anotar un gasto</h2>
+      <div class="formulario">
+        <input type="text" id="descripcion" placeholder="¿En qué gastaste? (ej: hamburguesa)" maxlength="40">
+        <input type="number" id="monto" min="1" placeholder="Monto">
+        <select id="categoria" aria-label="Categoría">
+          <option>Comida</option>
+          <option>Salidas</option>
+          <option>Gym</option>
+          <option>Juegos</option>
+          <option>Transporte</option>
+          <option>Otros</option>
+        </select>
+        <button id="agregar">Agregar gasto</button>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
+
+    <section>
+      <h2>Tus gastos</h2>
+      <ul id="lista"></ul>
+      <p class="vacio" id="vacio">Todavía no anotaste nada. Cargá tu primer gasto arriba.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
