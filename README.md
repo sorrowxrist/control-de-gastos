@@ -24,7 +24,7 @@ HTML, CSS, JavaScript y Python
 ## Ideas para seguir mejorándola
 
 - [ ] Filtro por categoría
-- [ ] Gráfico de gastos por categoría
+- [x] Gráfico de gastos por categoría
 - [x] Exportar los gastos a CSV
 
 ## Autor
