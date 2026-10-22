@@ -14,7 +14,7 @@ App web simple para anotar gastos y ver cuánto queda del presupuesto del mes.
 
 ## Tecnologías
 
-HTML, CSS y JavaScript puro, sin librerías.
+HTML, CSS, JavaScript y Python
 
 ## Cómo usarla en tu compu
 
