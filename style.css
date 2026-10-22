@@ -165,3 +165,85 @@ footer a:hover { text-decoration: underline; }
   width: auto;
   margin-bottom: 0.75rem;
 }
+
+/* ---------- Intro ---------- */
+body.intro-activa { overflow: hidden; }
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #eef1f6;
+}
+
+.panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #101626;
+  transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.panel-arriba { top: 0; }
+.panel-abajo { bottom: 0; }
+
+.intro-contenido {
+  position: relative;
+  padding: 1rem;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.intro-titulo {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  animation: revelar 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.intro-frase {
+  margin: 1rem 0 2rem;
+  color: #98a3b8;
+  animation: aparecer 0.8s ease 0.8s both;
+}
+
+#entrar {
+  width: auto;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 99px;
+  animation: aparecer 0.8s ease 1.3s both;
+}
+
+@keyframes revelar {
+  from { clip-path: inset(0 100% 0 0); transform: translateY(10px); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Cuando se toca el botón */
+#intro.abriendo .intro-contenido { opacity: 0; transform: scale(1.08); }
+#intro.abriendo .panel-arriba { transform: translateY(-100%); }
+#intro.abriendo .panel-abajo { transform: translateY(100%); }
+
+/* La app entra suave después de la intro */
+main, footer {
+  transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+body.intro-activa main,
+body.intro-activa footer {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Si alguien tiene desactivadas las animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  .intro-titulo, .intro-frase, #entrar { animation: none; }
+  .panel, .intro-contenido, main, footer { transition: none; }
+}

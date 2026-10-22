@@ -166,6 +166,15 @@ inputPresupuesto.addEventListener("input", () => {
   render();
 });
 
+// ---------- Intro ----------
+const intro = $("intro");
+
+$("entrar").addEventListener("click", () => {
+  intro.classList.add("abriendo");
+  document.body.classList.remove("intro-activa");
+  setTimeout(() => intro.remove(), 1400);
+});
+
 // ---------- Inicio ----------
 cargarDatos();
 render();
