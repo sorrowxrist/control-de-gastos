@@ -127,6 +127,29 @@ function eliminarGasto(id) {
   render();
 }
 
+function exportarCSV() {
+  if (gastos.length === 0) {
+    alert("No hay gastos para exportar.");
+    return;
+  }
+
+  const filas = gastos.map((g) => {
+    // Las comillas dobles adentro del texto se escapan duplicándolas
+    const descripcion = '"' + g.descripcion.replaceAll('"', '""') + '"';
+    return [descripcion, g.monto, g.categoria].join(",");
+  });
+
+  const csv = ["descripcion,monto,categoria", ...filas].join("\n");
+
+  // El \ufeff ayuda a que Excel muestre bien las tildes
+  const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+  const enlace = document.createElement("a");
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = "gastos.csv";
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
 // ---------- Eventos ----------
 botonAgregar.addEventListener("click", agregarGasto);
 
@@ -135,6 +158,7 @@ botonAgregar.addEventListener("click", agregarGasto);
     if (e.key === "Enter") agregarGasto();
   });
 });
+$("exportar").addEventListener("click", exportarCSV);
 
 inputPresupuesto.addEventListener("input", () => {
   presupuesto = Number(inputPresupuesto.value) || 0;
