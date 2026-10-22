@@ -7,6 +7,10 @@
   --ok: #1f8a5b;
   --alerta: #d2433d;
   --borde: #d9dfea;
+
+    --aurora-1: #7aa2ff;
+  --aurora-2: #c58bff;
+  --aurora-3: #ff9ec4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +23,10 @@
     --ok: #4cc38a;
     --alerta: #ff7a72;
     --borde: #2c3445;
+
+        --aurora-1: #3b5bff;
+    --aurora-2: #8a3ffc;
+    --aurora-3: #ff4f8b;
   }
 }
 
@@ -246,4 +254,103 @@ body.intro-activa footer {
 @media (prefers-reduced-motion: reduce) {
   .intro-titulo, .intro-frase, #entrar { animation: none; }
   .panel, .intro-contenido, main, footer { transition: none; }
+}
+
+/* ---------- Fondo aurora ---------- */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.aurora span {
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.aurora span:nth-child(1) {
+  background: var(--aurora-1);
+  top: -20vmax;
+  left: -15vmax;
+  animation: flotar-1 18s ease-in-out infinite alternate;
+}
+.aurora span:nth-child(2) {
+  background: var(--aurora-2);
+  top: 10vh;
+  right: -20vmax;
+  animation: flotar-2 22s ease-in-out infinite alternate;
+}
+.aurora span:nth-child(3) {
+  background: var(--aurora-3);
+  bottom: -25vmax;
+  left: 20vw;
+  animation: flotar-3 26s ease-in-out infinite alternate;
+}
+
+@keyframes flotar-1 { to { transform: translate(25vmax, 15vmax) scale(1.2); } }
+@keyframes flotar-2 { to { transform: translate(-20vmax, 20vmax) scale(0.9); } }
+@keyframes flotar-3 { to { transform: translate(-15vmax, -25vmax) scale(1.15); } }
+
+/* ---------- Tarjetas de vidrio ---------- */
+.resumen,
+li {
+  background: color-mix(in srgb, var(--superficie) 60%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora span { animation: none; }
+}
+
+/* ---------- Las manchas siguen al mouse ---------- */
+.aurora span {
+  translate:
+    calc(var(--px, 0) * var(--fuerza, 8) * 1vmax)
+    calc(var(--py, 0) * var(--fuerza, 8) * 1vmax);
+  transition: translate 1.5s ease-out;
+}
+.aurora span:nth-child(1) { --fuerza: 6; }
+.aurora span:nth-child(2) { --fuerza: -9; }
+.aurora span:nth-child(3) { --fuerza: 12; }
+
+/* ---------- Colores en la intro ---------- */
+#intro {
+  --aurora-1: #3b5bff;
+  --aurora-2: #8a3ffc;
+  --aurora-3: #ff4f8b;
+}
+
+#intro .aurora {
+  position: absolute;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+#intro.abriendo .aurora { opacity: 0; }
+
+.intro-titulo {
+  background: linear-gradient(90deg, #7aa2ff, #c58bff, #ff9ec4, #7aa2ff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    revelar 1s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    brillo 6s linear infinite;
+}
+
+@keyframes brillo {
+  to { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora span { transition: none; }
+  .intro-titulo { animation: none; }
 }

@@ -166,6 +166,16 @@ inputPresupuesto.addEventListener("input", () => {
   render();
 });
 
+// ---------- Las manchas siguen al mouse ----------
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.addEventListener("pointermove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;  // de -1 a 1
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    document.documentElement.style.setProperty("--px", x);
+    document.documentElement.style.setProperty("--py", y);
+  });
+}
+
 // ---------- Intro ----------
 const intro = $("intro");
 

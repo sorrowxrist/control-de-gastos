@@ -8,75 +8,84 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="intro-activa">
+  <div class="aurora" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-  <body class="intro-activa">
-    <div id="intro">
-      <div class="panel panel-arriba"></div>
-      <div class="panel panel-abajo"></div>
-      <div class="intro-contenido">
-        <div class="intro-titulo">Control de gastos</div>
-        <p class="intro-frase">Administra tu plata</p>
-        <button id="entrar">Empezar</button>
-      </div>
+  <div id="intro">
+    <div class="panel panel-arriba"></div>
+    <div class="panel panel-abajo"></div>
+
+    <div class="aurora" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <main>
+    <div class="intro-contenido">
+      <div class="intro-titulo">Control de gastos</div>
+      <p class="intro-frase">Administra tu plata.</p>
+      <button id="entrar">Empezar</button>
+    </div>
+  </div>
 
-      <main>
-        <h1>Control de gastos</h1>
+  <main>
+    <h1>Control de gastos</h1>
 
-        <section class="resumen" aria-live="polite">
-          <div>
-            <label for="presupuesto">Presupuesto del mes</label>
-            <input type="number" id="presupuesto" min="0" step="100" placeholder="Ej: 150000">
-          </div>
-          <div>
-            <p class="etiqueta">Gastado</p>
-            <p class="monto" id="gastado">$0</p>
-          </div>
-          <div>
-            <p class="etiqueta">Te queda</p>
-            <p class="monto" id="restante">$0</p>
-          </div>
-          <div class="barra" role="progressbar" aria-label="Porcentaje del presupuesto gastado" aria-valuemin="0"
-            aria-valuemax="100" aria-valuenow="0">
-            <div id="relleno"></div>
-          </div>
-        </section>
+    <section class="resumen" aria-live="polite">
+      <div>
+        <label for="presupuesto">Presupuesto del mes</label>
+        <input type="number" id="presupuesto" min="0" step="100" placeholder="Ej: 150000">
+      </div>
+      <div>
+        <p class="etiqueta">Gastado</p>
+        <p class="monto" id="gastado">$0</p>
+      </div>
+      <div>
+        <p class="etiqueta">Te queda</p>
+        <p class="monto" id="restante">$0</p>
+      </div>
+      <div class="barra" role="progressbar" aria-label="Porcentaje del presupuesto gastado" aria-valuemin="0"
+        aria-valuemax="100" aria-valuenow="0">
+        <div id="relleno"></div>
+      </div>
+    </section>
 
-        <section>
-          <h2>Anotar un gasto</h2>
-          <div class="formulario">
-            <input type="text" id="descripcion" placeholder="¿En qué gastaste? (ej: hamburguesa)" maxlength="40">
-            <input type="number" id="monto" min="1" placeholder="Monto">
-            <select id="categoria" aria-label="Categoría">
-              <option>Comida</option>
-              <option>Salidas</option>
-              <option>Gym</option>
-              <option>Juegos</option>
-              <option>Transporte</option>
-              <option>Otros</option>
-            </select>
-            <button id="agregar">Agregar gasto</button>
-          </div>
-          <p class="error" id="error" role="alert"></p>
-        </section>
+    <section>
+      <h2>Anotar un gasto</h2>
+      <div class="formulario">
+        <input type="text" id="descripcion" placeholder="¿En qué gastaste? (ej: hamburguesa)" maxlength="40">
+        <input type="number" id="monto" min="1" placeholder="Monto">
+        <select id="categoria" aria-label="Categoría">
+          <option>Comida</option>
+          <option>Salidas</option>
+          <option>Gym</option>
+          <option>Juegos</option>
+          <option>Transporte</option>
+          <option>Otros</option>
+        </select>
+        <button id="agregar">Agregar gasto</button>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
 
-        <section>
-          <h2>Tus gastos</h2>
-          <button id="exportar">Exportar a CSV</button>
-          <ul id="lista"></ul>
-          <p class="vacio" id="vacio">Todavía no anotaste nada. Cargá tu primer gasto arriba.</p>
-        </section>
-      </main>
+    <section>
+      <h2>Tus gastos</h2>
+      <button id="exportar">Exportar a CSV</button>
+      <ul id="lista"></ul>
+      <p class="vacio" id="vacio">Todavía no anotaste nada. Cargá tu primer gasto arriba.</p>
+    </section>
+  </main>
 
-      <footer>
-        <p>Hecho por Alan Gimenez · Tandil, Buenos Aires</p>
-        <p><a href="https://github.com/sorrowxrist" target="_blank" rel="noopener">Mi GitHub</a></p>
-      </footer>
+  <footer>
+    <p>Hecho por Alan Gimenez · Tandil, Buenos Aires</p>
+    <p><a href="https://github.com/sorrowxrist" target="_blank" rel="noopener">Mi GitHub</a></p>
+  </footer>
 
-      <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 
 </html>
