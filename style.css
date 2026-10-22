@@ -354,3 +354,56 @@ li {
   .aurora span { transition: none; }
   .intro-titulo { animation: none; }
 }
+
+/* ---------- Gráfico por categoría ---------- */
+.grafico {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: color-mix(in srgb, var(--superficie) 60%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+.grafico[hidden] { display: none; }
+
+#dona {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background 0.4s ease;
+}
+#dona::after {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  background: var(--superficie);
+}
+
+#leyenda {
+  flex: 1;
+  min-width: 180px;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.fila .punto {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.fila .nombre { flex: 1; }
+.fila .porcentaje { color: var(--tinta-suave); font-size: 0.85rem; }
+.fila .suma { font-weight: 700; }

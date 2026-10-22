@@ -15,6 +15,20 @@ const textoRestante = $("restante");
 const relleno = $("relleno");
 const barra = document.querySelector(".barra");
 
+const grafico = $("grafico");
+const dona = $("dona");
+const leyenda = $("leyenda");
+const sinDatos = $("sin-datos");
+
+const COLORES = {
+  Comida: "#ff9f43",
+  Salidas: "#ee5a9b",
+  Gym: "#1f8a5b",
+  Juegos: "#7c5cff",
+  Transporte: "#2f9bff",
+  Otros: "#8a94a6",
+};
+
 let gastos = [];
 let presupuesto = 0;
 
@@ -87,6 +101,62 @@ function render() {
   relleno.style.width = porcentaje + "%";
   relleno.style.background = porcentaje >= 90 ? "var(--alerta)" : "var(--ok)";
   barra.setAttribute("aria-valuenow", Math.round(porcentaje));
+    barra.setAttribute("aria-valuenow", Math.round(porcentaje));
+
+  renderGrafico();
+
+}
+
+
+function renderGrafico() {
+  leyenda.replaceChildren();
+  grafico.hidden = gastos.length === 0;
+  sinDatos.hidden = gastos.length > 0;
+  if (gastos.length === 0) return;
+
+  // 1. Sumar por categoría
+  const totales = {};
+  gastos.forEach((g) => {
+    totales[g.categoria] = (totales[g.categoria] || 0) + g.monto;
+  });
+  const total = gastos.reduce((suma, g) => suma + g.monto, 0);
+
+  // 2. Armar los tramos del degradado y la leyenda
+  let acumulado = 0;
+  const tramos = [];
+
+  Object.entries(totales)
+    .sort((a, b) => b[1] - a[1])
+    .forEach(([categoria, suma]) => {
+      const color = COLORES[categoria] || "#8a94a6";
+      const inicio = acumulado;
+      acumulado += (suma / total) * 100;
+      tramos.push(`${color} ${inicio}% ${acumulado}%`);
+
+      const fila = document.createElement("div");
+      fila.className = "fila";
+
+      const punto = document.createElement("span");
+      punto.className = "punto";
+      punto.style.background = color;
+
+      const nombre = document.createElement("span");
+      nombre.className = "nombre";
+      nombre.textContent = categoria;
+
+      const porcentaje = document.createElement("span");
+      porcentaje.className = "porcentaje";
+      porcentaje.textContent = Math.round((suma / total) * 100) + "%";
+
+      const monto = document.createElement("span");
+      monto.className = "suma";
+      monto.textContent = formatearPesos(suma);
+
+      fila.append(punto, nombre, porcentaje, monto);
+      leyenda.append(fila);
+    });
+
+  dona.style.background = `conic-gradient(${tramos.join(", ")})`;
 }
 
 // ---------- Acciones ----------
