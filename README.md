@@ -25,7 +25,7 @@ HTML, CSS y JavaScript puro, sin librerías.
 
 - [ ] Filtro por categoría
 - [ ] Gráfico de gastos por categoría
-- [✓] Exportar los gastos a CSV
+- [x] Exportar los gastos a CSV
 
 ## Autor
 
