@@ -255,6 +255,15 @@ $("entrar").addEventListener("click", () => {
   setTimeout(() => intro.remove(), 1400);
 });
 
+// ---------- PWA: registrar el service worker ----------
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").catch((err) => {
+      console.error("No se pudo registrar el service worker:", err);
+    });
+  });
+}
+
 // ---------- Inicio ----------
 cargarDatos();
 render();
